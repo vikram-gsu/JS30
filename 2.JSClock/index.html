@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>JS Clock</title>
+  </head>
+  <body>
+    <div class="clock">
+      <div class="clock-face">
+          <div class="center"></div>
+        <div class="hand hour-hand"></div>
+        <div class="hand min-hand"></div>
+        <div class="hand second-hand"></div>
+      </div>
+    </div>
+    
+    <script>
+        const secondsHand = document.querySelector('.second-hand');
+        let currentSecondsTransition, currentMinutesTransition, currentHourTransition;
+        function setSeconds(){
+            const date = new Date();
+            const seconds = date.getSeconds();
+            const secondsDegrees = ((seconds / 60) * 360) + 90;
+            if (secondsDegrees === 450){
+                currentSecondsTransition = secondsHand.style.transition;
+                secondsHand.style.transition = null;
+            }else {
+                secondsHand.style.transition = currentSecondsTransition;
+            }
+            secondsHand.style.transform = `rotate(${secondsDegrees}deg)`;
+        }
+        
+        const minutesHand = document.querySelector('.min-hand');
+        function setMinutes(){
+            const date = new Date();
+            const minutes = date.getMinutes();
+            const minutesDegrees = ((minutes / 60) * 360) + 90;
+            console.log(minutesDegrees);
+            if (minutesDegrees === 450){
+                currentMinutesTransition = minutesHand.style.transition;
+                minutesHand.style.transition = null;
+            }else {
+                minutesHand.style.transition = currentMinutesTransition;
+            }
+            minutesHand.style.transform = `translateX(32px) rotate(${minutesDegrees}deg)`;
+        }
+        const hourHand = document.querySelector('.hour-hand');
+        function setHour(){
+            const date = new Date();
+            const hour = date.getHours();
+            const hourDegrees = (((hour%12) / 12) * 360) + 90;
+            console.log(hour, hourDegrees);
+            hourHand.style.transform = `translateX(62px) rotate(${hourDegrees}deg)`;
+            if (hourDegrees === 450){
+                currentHourTransition = hourHand.style.transition;
+                hourHand.style.transition = null;
+            }else {
+                hourHand.style.transition = currentHourTransition;
+            }
+        }
+        setSeconds();
+        setMinutes();
+        setHour();
+        setInterval(setSeconds, 1000);
+        setInterval(setMinutes, 60000);
+        setInterval(setHour, 60 * 60 * 1000);
+    </script>
+  </body>
+</html>

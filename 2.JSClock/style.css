@@ -1,0 +1,59 @@
+html {
+    font-family: 'helvetica neue';
+    text-align: center;
+    font-size: 10px;
+    background: linear-gradient(skyblue, blue);
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.clock{
+    border: 20px solid white;
+    border-radius: 50%;
+    height: 30rem;
+    width: 30rem;
+    position: relative;
+    padding: 2rem;
+}
+
+.clock-face {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    transform: translateY(-3px);
+}
+
+.hand {
+    position: absolute;
+    width: 50%;
+    height: 6px;
+    background-color: black;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0, 2.64, 0.58, 1);
+}
+
+.hour-hand {
+    width: 30%;
+}
+
+.min-hand {
+    width: 40%;
+}
+
+.center {
+    width: 2rem;
+    height: 2rem;
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+    top: calc(50% - 0.5rem);
+    left: calc(50% - 0.5rem);
+}
